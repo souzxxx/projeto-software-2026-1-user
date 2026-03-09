@@ -30,6 +30,16 @@ def create_user():
         "id": str(user.id),
         "name": user.name,
         "email": user.email
+    }), 200
+
+@app.route("/users/<uuid:user_id>", methods=["GET"])
+def get_user(user_id):
+    user = User.query.get_or_404(user_id)
+
+    return jsonify({
+        "id": str(user.id),
+        "name": user.name,
+        "email": user.email
     }), 201
 
 
