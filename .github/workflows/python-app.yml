@@ -53,7 +53,7 @@ jobs:
           
           # Injeção das 3 variáveis que seu main.py exige
           docker run -d \
-            -p 5000:5000 \
+            -p 80:5001 \
             -e POSTGRES_USER="${{ secrets.POSTGRES_USER }}" \
             -e POSTGRES_PASSWORD="${{ secrets.POSTGRES_PASSWORD }}" \
             -e POSTGRES_URL="${{ secrets.POSTGRES_URL }}" \
