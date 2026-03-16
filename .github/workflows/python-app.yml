@@ -51,9 +51,12 @@ jobs:
           docker rm --force users || true
           docker image prune -f
           
-          docker run -d -p 80:5000 \
-            -e POSTGRES_URL=${{ secrets.POSTGRES_URL }} \
-            -e REDIS_URL=redis://redis:6379 \
+          # Injeção das 3 variáveis que seu main.py exige
+          docker run -d \
+            -p 80:5000 \
+            -e POSTGRES_USER="${{ secrets.POSTGRES_USER }}" \
+            -e POSTGRES_PASSWORD="${{ secrets.POSTGRES_PASSWORD }}" \
+            -e POSTGRES_URL="${{ secrets.POSTGRES_URL }}" \
             --network=rede \
-            --name app_users \
+            --name users \
             souzx/users-ci:${{ github.sha }}
