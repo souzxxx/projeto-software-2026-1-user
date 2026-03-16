@@ -59,5 +59,4 @@ jobs:
             -e POSTGRES_URL="${{ secrets.POSTGRES_URL }}" \
             --network=rede \
             --name users \
-            
             souzx/users-ci:${{ github.sha }}
