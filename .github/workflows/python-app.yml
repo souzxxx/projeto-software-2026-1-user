@@ -37,7 +37,7 @@ jobs:
         context: .
         file: ./Dockerfile
         push: true
-        tags: souzx/py-conexoes-ci:${{ github.sha }}
+        tags: souzx/users-ci:${{ github.sha }}
 
     - name: Deploy via SSH
       uses: appleboy/ssh-action@master
@@ -47,8 +47,8 @@ jobs:
         key: ${{ secrets.KEY_TEST }}
         port: 22
         script: |
-          docker stop py-conexoes || true
-          docker rm --force py-conexoes || true
+          docker stop users || true
+          docker rm --force users || true
           docker image prune -f
           
           # Injeção das 3 variáveis que seu main.py exige
@@ -58,5 +58,5 @@ jobs:
             -e POSTGRES_PASSWORD="${{ secrets.POSTGRES_PASSWORD }}" \
             -e POSTGRES_URL="${{ secrets.POSTGRES_URL }}" \
             --network=rede \
-            --name py-conexoes \
-            souzx/py-conexoes-ci:${{ github.sha }}
+            --name users \
+            souzx/users-ci:${{ github.sha }}
