@@ -20,7 +20,8 @@ def postgres_container():
 def app(postgres_container):
 
     os.environ["SQLALCHEMY_DATABASE_URI"] = postgres_container
-    
+    os.environ["AUTH_DISABLED"] = "true"
+
     flask_app = create_app()
     
     with flask_app.app_context():

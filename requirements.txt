@@ -6,3 +6,5 @@ pytest-cov
 testcontainers
 redis==5.0.1
 flask-cors
+PyJWT[crypto]==2.9.0
+requests==2.32.3
